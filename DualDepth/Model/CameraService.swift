@@ -156,7 +156,7 @@ public class CameraService {
             setupResult = .notAuthorized
             
             DispatchQueue.main.async {
-                self.alertError = AlertError(title: "Camera Access", message: "SwiftCamera doesn't have access to use your camera, please update your privacy settings.", primaryButtonTitle: "Settings", secondaryButtonTitle: nil, primaryAction: {
+                self.alertError = AlertError(title: "Camera Access", message: "DualDepth doesn't have access to use your camera, please update your privacy settings.", primaryButtonTitle: "Settings", secondaryButtonTitle: nil, primaryAction: {
                         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
                                                   options: [:], completionHandler: nil)
                     

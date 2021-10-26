@@ -61,52 +61,52 @@ extension Photo {
 public class CameraService {
     typealias PhotoCaptureSessionID = String
     
-//    MARK: Observed Properties UI must react to
+    // MARK: Observed Properties UI must react to
     
-//    1.
+    /// whether the flash is turned ON or OFF
     @Published public var flashMode: AVCaptureDevice.FlashMode = .off
-//    2.
+    /// whether the UI should show an alert view or not
     @Published public var shouldShowAlertView = false
-//    3.
+    /// whether the UI should show a spinner indicating that work is going on to process the captured photo
     @Published public var shouldShowSpinner = false
-//    4.
+    /// when a photo is about to be captured
     @Published public var willCapturePhoto = false
-//    5.
+    /// once the camera session successfully, set to `true`
     @Published public var isCameraButtonDisabled = true
-//    6.
+    /// once the camera session successfully, set to `true`
     @Published public var isCameraUnavailable = true
-//    8.
+    /// the photo output
     @Published public var photo: Photo?
-    
+    /// if a depth data is available, set to `true`
     @Published public var isDepthMapAvailable = false
     
 
-//    MARK: Alert properties
+    // MARK: Alert properties
     public var alertError: AlertError = AlertError()
     
-// MARK: Session Management Properties
+    // MARK: Session Management Properties
     
-//    9
+    /// the capture session
     public let session = AVCaptureSession()
-//    10
+    /// whether the sessioin is running or not
     var isSessionRunning = false
-//    12
+    /// whether the sessioin is been cofigured or not
     var isConfigured = false
-//    13
+    /// the result of the setup process
     var setupResult: SessionSetupResult = .success
-//    14
-    // Communicate with the session and other session objects on this queue.
+    /// the GDC queue to be used to execute most of the capture session's processes.
+    /// Communicate with the session and other session objects on this queue.
     private let sessionQueue = DispatchQueue(label: "session queue")
-    
+    /// the device to capture video
     @objc dynamic var videoDeviceInput: AVCaptureDeviceInput!
     
     // MARK: Device Configuration Properties
     private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera], mediaType: .video, position: .unspecified)
     
     // MARK: Capturing Photos
-    
+    /// configures and captures photos
     private let photoOutput = AVCapturePhotoOutput()
-    
+    /// delegates that will handle the photo capture process's stages
     private var inProgressPhotoCaptureDelegates = [Int64: PhotoCaptureProcessor]()
     
     // MARK: KVO and Notifications Properties
@@ -130,7 +130,7 @@ public class CameraService {
         }
     }
     
-    //        MARK: Checks for user's permisions
+    // MARK: Checks for user's permisions
     public func checkForPermissions() {
       
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -168,7 +168,7 @@ public class CameraService {
         }
     }
     
-    //  MARK: Session Management
+    // MARK: - Session Management
     
     // Call this on the session queue.
     /// - Tag: ConfigureSession
@@ -256,7 +256,7 @@ public class CameraService {
         self.start()
     }
  
-    //  MARK: Device Configuration
+    // MARK: - Device Configuration
     
     /// - Tag: ChangeCamera
     public func changeCamera() {
@@ -324,7 +324,7 @@ public class CameraService {
             }
             
             DispatchQueue.main.async {
-//                MARK: Here enable capture button due to successfull setup
+                // MARK: Here enable capture button due to successfull setup
                 self.isCameraButtonDisabled = false
                 self.isDepthMapAvailable = self.photoOutput.isDepthDataDeliverySupported
             }
@@ -417,7 +417,7 @@ public class CameraService {
         }
     }
     
-    //    MARK: Capture Photo
+    // MARK: - Capture Photo
     
     /// - Tag: CapturePhoto
     public func capturePhoto() {

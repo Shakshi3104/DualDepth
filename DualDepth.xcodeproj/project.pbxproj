@@ -39,6 +39,9 @@
 		CE8A70462727D33700FF09E5 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		CE8A70482727D35100FF09E5 /* CVPixelBuffer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Extensions.swift"; sourceTree = "<group>"; };
 		CEB183AE2727E73A00E3082A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CEB183B02727E9EA00E3082A /* IMG_2634.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2634.jpeg; sourceTree = "<group>"; };
+		CEB183B12727E9EA00E3082A /* IMG_2635.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2635.JPG; sourceTree = "<group>"; };
+		CEB183B22727EB3900E3082A /* dualdepth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dualdepth.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 		CE4C975327269F9300A48EBD = {
 			isa = PBXGroup;
 			children = (
+				CEB183AF2727E90200E3082A /* materials */,
 				CEB183AE2727E73A00E3082A /* README.md */,
 				CE4C975E27269F9300A48EBD /* DualDepth */,
 				CE4C975D27269F9300A48EBD /* Products */,
@@ -112,6 +116,16 @@
 				CE8A703C2727D27A00FF09E5 /* CameraView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CEB183AF2727E90200E3082A /* materials */ = {
+			isa = PBXGroup;
+			children = (
+				CEB183B22727EB3900E3082A /* dualdepth.png */,
+				CEB183B02727E9EA00E3082A /* IMG_2634.jpeg */,
+				CEB183B12727E9EA00E3082A /* IMG_2635.JPG */,
+			);
+			path = materials;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

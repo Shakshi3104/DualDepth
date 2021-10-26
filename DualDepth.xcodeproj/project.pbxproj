@@ -38,6 +38,7 @@
 		CE8A70442727D31A00FF09E5 /* CameraService+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CameraService+Extensions.swift"; sourceTree = "<group>"; };
 		CE8A70462727D33700FF09E5 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		CE8A70482727D35100FF09E5 /* CVPixelBuffer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Extensions.swift"; sourceTree = "<group>"; };
+		CEB183AE2727E73A00E3082A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +55,7 @@
 		CE4C975327269F9300A48EBD = {
 			isa = PBXGroup;
 			children = (
+				CEB183AE2727E73A00E3082A /* README.md */,
 				CE4C975E27269F9300A48EBD /* DualDepth */,
 				CE4C975D27269F9300A48EBD /* Products */,
 			);

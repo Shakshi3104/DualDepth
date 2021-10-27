@@ -20,6 +20,7 @@
 		CE8A70452727D31A00FF09E5 /* CameraService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A70442727D31A00FF09E5 /* CameraService+Extensions.swift */; };
 		CE8A70472727D33700FF09E5 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A70462727D33700FF09E5 /* PhotoCaptureProcessor.swift */; };
 		CE8A70492727D35100FF09E5 /* CVPixelBuffer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A70482727D35100FF09E5 /* CVPixelBuffer+Extensions.swift */; };
+		CEEA9DC32728EAF600A1B591 /* AVDepthData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA9DC22728EAF600A1B591 /* AVDepthData+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		CEB183B02727E9EA00E3082A /* IMG_2634.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2634.jpeg; sourceTree = "<group>"; };
 		CEB183B12727E9EA00E3082A /* IMG_2635.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2635.JPG; sourceTree = "<group>"; };
 		CEB183B22727EB3900E3082A /* dualdepth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dualdepth.png; sourceTree = "<group>"; };
+		CEEA9DC22728EAF600A1B591 /* AVDepthData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVDepthData+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				CE8A70442727D31A00FF09E5 /* CameraService+Extensions.swift */,
 				CE8A70462727D33700FF09E5 /* PhotoCaptureProcessor.swift */,
 				CE8A70482727D35100FF09E5 /* CVPixelBuffer+Extensions.swift */,
+				CEEA9DC22728EAF600A1B591 /* AVDepthData+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				CE8A703B2727D24C00FF09E5 /* CameraPreview.swift in Sources */,
 				CE8A70412727D2C700FF09E5 /* CameraModel.swift in Sources */,
 				CE4C976227269F9300A48EBD /* ContentView.swift in Sources */,
+				CEEA9DC32728EAF600A1B591 /* AVDepthData+Extensions.swift in Sources */,
 				CE4C976027269F9300A48EBD /* DualDepthApp.swift in Sources */,
 				CE8A70472727D33700FF09E5 /* PhotoCaptureProcessor.swift in Sources */,
 				CE8A70432727D2F500FF09E5 /* CameraService+Enums.swift in Sources */,

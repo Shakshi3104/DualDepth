@@ -86,7 +86,7 @@ extension PhotoCaptureProcessor: AVCapturePhotoCaptureDelegate {
                 print("📷: \(depthData.description)")
                 
                 // depth map image
-                depthMapImage = convertDepthMapImage(from: depthData)
+                depthMapImage = depthData.asDepthMapImage
             }
         }
     }
@@ -149,28 +149,5 @@ extension PhotoCaptureProcessor {
                 }
             }
         }
-    }
-    
-    // MARK: - Convert AVDepthData
-    // convert to AVDepthData (kCVPixelFormatType_DisparityFloat32)
-    private func convertToFloat32(from depthData: AVDepthData) -> AVDepthData {
-        var convertedDepthData: AVDepthData
-        
-        // Convert 16 bit floats up to 32 bit
-        // https://stackoverflow.com/questions/55009162/filtering-depth-data-on-ios-12-appears-to-be-rotated
-        if depthData.depthDataType != kCVPixelFormatType_DisparityFloat32 {
-            convertedDepthData = depthData.converting(toDepthDataType: kCVPixelFormatType_DisparityFloat32)
-        } else {
-            convertedDepthData = depthData
-        }
-        
-        return convertedDepthData
-    }
-    
-    // convert AVDepthData to UIImage
-    func convertDepthMapImage(from depthData: AVDepthData) -> UIImage? {
-        let convertedDepthData = convertToFloat32(from: depthData)
-        let normalizedDepthMap = convertedDepthData.depthDataMap.normalize()
-        return normalizedDepthMap.uiImage
     }
 }

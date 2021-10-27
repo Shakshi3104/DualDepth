@@ -27,9 +27,6 @@ class PhotoCaptureProcessor: NSObject {
     /// The depth data map image
     var depthMapImage: UIImage?
     
-    /// The depth data map array
-    var depthMapArray: [[Float32]]?
-    
     /// The maximum time lapse before telling UI to show a spinner
     private var maxPhotoProcessingTime: CMTime?
         
@@ -90,13 +87,6 @@ extension PhotoCaptureProcessor: AVCapturePhotoCaptureDelegate {
                 
                 // depth map image
                 depthMapImage = convertDepthMapImage(from: depthData)
-                // depth map array
-                let array = convertDepthMapArray(from: depthData)
-                // NOTE: 深度マップが取れていないとき、配列は空
-                if array.count > 0 {
-                    depthMapArray = array
-                    print("📷 depth map: \(array.count)x\(array[0].count)")
-                }
             }
         }
     }
@@ -123,11 +113,6 @@ extension PhotoCaptureProcessor: AVCapturePhotoCaptureDelegate {
             // save depth map as image
             if let uiImage = depthMapImage {
                 UIImageWriteToSavedPhotosAlbum(uiImage, nil, nil, nil)
-            }
-            
-            // save depth map as array
-            if let array = depthMapArray {
-                saveToFile(array)
             }
         }
     }
@@ -187,60 +172,5 @@ extension PhotoCaptureProcessor {
         let convertedDepthData = convertToFloat32(from: depthData)
         let normalizedDepthMap = convertedDepthData.depthDataMap.normalize()
         return normalizedDepthMap.uiImage
-    }
-    
-    // convert AVDepthData to Array<Array<Float32>>
-    func convertDepthMapArray(from depthData: AVDepthData) -> [[Float32]] {
-        let convertedDepthData = convertToFloat32(from: depthData)
-        let array = convertedDepthData.depthDataMap.array
-        return array
-    }
-    
-    // MARK: - Save array to CSV file
-    var documentURL: NSURL {
-        let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
-        return documentURL
-    }
-    
-    var depthMapArrayURL: NSURL {
-        let depthMapURL = documentURL.appendingPathComponent("DepthMap", isDirectory: true)
-        if !FileManager.default.fileExists(atPath: depthMapURL!.path) {
-            do {
-                try FileManager.default.createDirectory(at: depthMapURL!, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        
-        return depthMapURL! as NSURL
-    }
-    
-    var dateFormat: DateFormatter {
-        let format = DateFormatter()
-        format.dateFormat = "yyyyMMddHHmmssSSS"
-        return format
-    }
-    
-    func saveToFile(_ array: [[Float32]]) {
-        // 2D array to CSV format
-        // https://teratail.com/questions/107200
-        let flatString = array.map { line in
-            line.map { "\($0)" }.joined(separator: ",")
-        }.joined(separator: "\n")
-        
-        let timestamp = dateFormat.string(from: Date())
-        let filename = "depthmap_\(timestamp).csv"
-        let fileURL = depthMapArrayURL.appendingPathComponent(filename)
-        
-        guard let filepath = fileURL?.path else {
-            return
-        }
-        
-        do {
-            try flatString.write(toFile: filepath, atomically: true, encoding: .utf8)
-        }
-        catch let error as NSError {
-            print("Failure to Write File\n\(error)")
-        }
     }
 }

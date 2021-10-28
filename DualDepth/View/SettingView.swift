@@ -48,7 +48,16 @@ struct IconList: View {
     var body: some View {
         List {
             ForEach(0..<iconList.count) { index in
-                Text(iconList[index].displayName())
+                HStack {
+                    Image(iconList[index].iconName())
+                        .cornerRadius(10)
+                    Text(iconList[index].displayName())
+                    if index == iconSelection {
+                        Spacer()
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.accentColor)
+                    }
+                }
                     .onTapGesture {
                         iconSelection = index
                         var iconName: String?

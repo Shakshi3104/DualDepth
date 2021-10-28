@@ -31,4 +31,8 @@ enum DualDepthAppIcon: String, CaseIterable {
             return "iPhone 8 Plus"
         }
     }
+    
+    func iconName() -> String {
+        return self.rawValue.replacingOccurrences(of: "AppIcon", with: "")
+    }
 }

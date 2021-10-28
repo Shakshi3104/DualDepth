@@ -468,9 +468,16 @@ public class CameraService {
                     
                 }, completionHandler: { [weak self] (photoCaptureProcessor) in
                     // When the capture is complete, remove a reference to the photo capture delegate so it can be deallocated.
-                    if let data = photoCaptureProcessor.photoData {
+//                    if let data = photoCaptureProcessor.photoData {
+//                        self?.photo = Photo(originalData: data)
+//                        print("passing photo")
+//                    } else {
+//                        print("No photo data")
+//                    }
+                    
+                    if let data = photoCaptureProcessor.depthMapImage?.jpegData(compressionQuality: 1.0) {
                         self?.photo = Photo(originalData: data)
-                        print("passing photo")
+                        print("passing depth data")
                     } else {
                         print("No photo data")
                     }

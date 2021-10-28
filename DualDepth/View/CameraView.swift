@@ -10,6 +10,7 @@ import SwiftUI
 struct CameraView: View {
     @StateObject var model = CameraModel()
     
+    // MARK: -
     var captureButton: some View {
             Button(action: {
                 model.capturePhoto()
@@ -25,6 +26,27 @@ struct CameraView: View {
             })
         }
     
+    var capturedPhotoThumbnail: some View {
+                Group {
+                    if model.photo != nil {
+                        Image(uiImage: model.photo.image!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 60, height: 60)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .animation(.spring())
+        
+                    } else {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 60, height: 60, alignment: .center)
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+    // MARK: - status
+    @State private var isPresented = false
+    
+    // MARK: - body
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
@@ -55,9 +77,34 @@ struct CameraView: View {
                     )
                     .animation(.easeIn)
                 
-                // Button to capture photo
-                captureButton
+                ZStack {
+                    HStack {
+                        // Depthmap thumbnail
+                        capturedPhotoThumbnail
+                        
+                        Spacer()
+                        
+                        // Setting
+                        Button {
+                            isPresented.toggle()
+                        } label: {
+                            Image(systemName: "gear")
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+
+                    }
+                    
+                    // Button to capture photo
+                    captureButton
+                }
             }
+            .sheet(isPresented: $isPresented) {
+                // Dismiss
+            } content: {
+                SettingView()
+            }
+
         }
     }
 }

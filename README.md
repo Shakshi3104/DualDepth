@@ -19,5 +19,5 @@ This app is based on [Effortless SwiftUI-- Camera](https://github.com/rorodrigue
 ⚠️ If you take a picture **too close** to the object, you may not get a depth map.
 
 ## Requirements
-- iOS 15+
+- iOS 15.4+
 - Xcode 13+

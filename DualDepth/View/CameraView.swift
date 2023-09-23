@@ -84,6 +84,7 @@ struct CameraView: View {
                     HStack {
                         // Depthmap thumbnail
                         capturedPhotoThumbnail
+                            .padding()
                         
                         Spacer()
                         
@@ -95,7 +96,6 @@ struct CameraView: View {
                                 .foregroundColor(.white)
                         }
                         .padding()
-
                     }
                     
                     // Button to capture photo

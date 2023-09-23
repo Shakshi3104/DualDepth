@@ -50,7 +50,7 @@ struct IconList: View {
             ForEach(0..<iconList.count) { index in
                 HStack {
                     Image(iconList[index].iconName())
-                        .cornerRadius(10)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     Text(iconList[index].displayName())
                     if index == iconSelection {
                         Spacer()

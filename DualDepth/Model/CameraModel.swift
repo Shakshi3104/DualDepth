@@ -21,6 +21,8 @@ final class CameraModel: ObservableObject {
     
     @Published var isDepthMapAvailable = false
     
+    @Published var isLiDARAvailable = false
+    
     var alertError: AlertError!
     
     var session: AVCaptureSession
@@ -54,6 +56,11 @@ final class CameraModel: ObservableObject {
         
         service.$isDepthMapAvailable.sink { [weak self] (val) in
             self?.isDepthMapAvailable = val
+        }
+        .store(in: &self.subscriptions)
+        
+        service.$isLiDARscannerAvailable.sink { [weak self] (val) in
+            self?.isLiDARAvailable = val
         }
         .store(in: &self.subscriptions)
     }

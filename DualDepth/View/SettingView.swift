@@ -12,6 +12,7 @@ struct SettingView: View {
     
     @State private var iconSelection = 0
     private let appIconList = DualDepthAppIcon.allCases
+    private let selectedIconDefaultsKey = "selectedIcon"
     
     var body: some View {
         NavigationView {
@@ -36,6 +37,11 @@ struct SettingView: View {
 
                 }
             }
+            .onAppear(perform: {
+                let selectedIconIndex: Int = UserDefaults.standard.integer(forKey: selectedIconDefaultsKey)
+                
+                iconSelection = selectedIconIndex
+            })
         }
     }
 }
@@ -44,13 +50,14 @@ struct SettingView: View {
 struct IconList: View {
     var iconList: [DualDepthAppIcon]
     @Binding var iconSelection: Int
+    private let selectedIconDefaultsKey = "selectedIcon"
     
     var body: some View {
         List {
             ForEach(0..<iconList.count) { index in
                 HStack {
                     Image(iconList[index].iconName())
-                        .cornerRadius(10)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     Text(iconList[index].displayName())
                     if index == iconSelection {
                         Spacer()
@@ -66,6 +73,8 @@ struct IconList: View {
                         } else {
                             iconName = nil
                         }
+                        
+                        UserDefaults.standard.set(index, forKey: selectedIconDefaultsKey)
                         
                         UIApplication.shared.setAlternateIconName(iconName)
                     }

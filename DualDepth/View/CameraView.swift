@@ -34,7 +34,8 @@ struct CameraView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 60, height: 60)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .animation(.spring())
+                            .animation(.spring, value: model.photo)
+//                            .animation(.spring())
         
                     } else {
                         RoundedRectangle(cornerRadius: 10)
@@ -52,12 +53,14 @@ struct CameraView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack {
-                HStack {
+                HStack(spacing: 10) {
                     Image(systemName: "square.stack.3d.forward.dottedline")
                         .foregroundColor(model.isDepthMapAvailable ? .yellow : .secondary)
-                        .padding(.horizontal)
+                    Image(systemName: "square.dotted")
+                        .foregroundColor(model.isLiDARAvailable ? .yellow : .secondary)
                     Spacer()
                 }
+                .padding(.horizontal)
                 
                 CameraPreview(session: model.session)
                     .onAppear {
@@ -81,6 +84,7 @@ struct CameraView: View {
                     HStack {
                         // Depthmap thumbnail
                         capturedPhotoThumbnail
+                            .padding()
                         
                         Spacer()
                         
@@ -92,7 +96,6 @@ struct CameraView: View {
                                 .foregroundColor(.white)
                         }
                         .padding()
-
                     }
                     
                     // Button to capture photo

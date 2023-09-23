@@ -79,6 +79,8 @@ public class CameraService {
     @Published public var photo: Photo?
     /// if a depth data is available, set to `true`
     @Published public var isDepthMapAvailable = false
+    /// if LiDAR scanner is available, set to `true`
+    @Published public var isLiDARscannerAvailable = false
     
 
     // MARK: Alert properties
@@ -101,7 +103,11 @@ public class CameraService {
     @objc dynamic var videoDeviceInput: AVCaptureDeviceInput!
     
     // MARK: Device Configuration Properties
-    private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera], mediaType: .video, position: .unspecified)
+    private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(
+        deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera, .builtInLiDARDepthCamera],
+        mediaType: .video,
+        position: .unspecified
+    )
     
     // MARK: Capturing Photos
     /// configures and captures photos
@@ -185,8 +191,16 @@ public class CameraService {
         do {
             var defaultVideoDevice: AVCaptureDevice?
             
-            if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: .back) {
-                // default to the ultrawide camera.
+            if let lidarDepthCamera = AVCaptureDevice.default(.builtInLiDARDepthCamera, for: .video, position: .back) {
+                // default to the LiDAR camera.
+                print("📷 LiDARDepthCamera")
+                defaultVideoDevice = lidarDepthCamera
+                
+                DispatchQueue.main.async {
+                    self.isLiDARscannerAvailable = true
+                }
+            } else if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: .back) {
+                // If the LiDAR camera is not available, default to the ultrawide camera.
                 print("📷 DualWideCamera")
                 defaultVideoDevice = dualWideCameraDevice
             } else if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
@@ -271,7 +285,7 @@ public class CameraService {
             let currentPosition = currentVideoDevice.position
             
             let backVideoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(
-                deviceTypes: [.builtInDualCamera, .builtInDualWideCamera, .builtInWideAngleCamera],
+                deviceTypes: [.builtInDualCamera, .builtInDualWideCamera, .builtInWideAngleCamera, .builtInLiDARDepthCamera],
                 mediaType: .video,
                 position: .back)
             let frontVideoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(

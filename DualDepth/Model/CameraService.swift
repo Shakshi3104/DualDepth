@@ -79,6 +79,8 @@ public class CameraService {
     @Published public var photo: Photo?
     /// if a depth data is available, set to `true`
     @Published public var isDepthMapAvailable = false
+    /// if LiDAR scanner is available, set to `true`
+    @Published public var isLiDARscannerAvailable = false
     
 
     // MARK: Alert properties
@@ -193,6 +195,10 @@ public class CameraService {
                 // default to the LiDAR camera.
                 print("📷 LiDARDepthCamera")
                 defaultVideoDevice = lidarDepthCamera
+                
+                DispatchQueue.main.async {
+                    self.isLiDARscannerAvailable = true
+                }
             } else if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: .back) {
                 // If the LiDAR camera is not available, default to the ultrawide camera.
                 print("📷 DualWideCamera")

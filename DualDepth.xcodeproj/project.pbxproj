@@ -22,6 +22,7 @@
 		CE8A70452727D31A00FF09E5 /* CameraService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A70442727D31A00FF09E5 /* CameraService+Extensions.swift */; };
 		CE8A70472727D33700FF09E5 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A70462727D33700FF09E5 /* PhotoCaptureProcessor.swift */; };
 		CE8A70492727D35100FF09E5 /* CVPixelBuffer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A70482727D35100FF09E5 /* CVPixelBuffer+Extensions.swift */; };
+		CEDBBB262B7251FF00F94C5F /* CameraLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBBB252B7251FF00F94C5F /* CameraLabelStyle.swift */; };
 		CEEA9DC32728EAF600A1B591 /* AVDepthData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA9DC22728EAF600A1B591 /* AVDepthData+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		CEB183B02727E9EA00E3082A /* IMG_2634.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2634.jpeg; sourceTree = "<group>"; };
 		CEB183B12727E9EA00E3082A /* IMG_2635.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_2635.JPG; sourceTree = "<group>"; };
 		CEB183B22727EB3900E3082A /* dualdepth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dualdepth.png; sourceTree = "<group>"; };
+		CEDBBB252B7251FF00F94C5F /* CameraLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraLabelStyle.swift; sourceTree = "<group>"; };
 		CEEA9DC22728EAF600A1B591 /* AVDepthData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVDepthData+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 				CE8A703C2727D27A00FF09E5 /* CameraView.swift */,
 				CE4C1344272A3264004F75D7 /* SettingView.swift */,
 				CE4C1346272A3717004F75D7 /* IconList.swift */,
+				CEDBBB252B7251FF00F94C5F /* CameraLabelStyle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,7 +168,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					CE4C975B27269F9300A48EBD = {
 						CreatedOnToolsVersion = 13.0;
@@ -216,6 +219,7 @@
 				CE4C976027269F9300A48EBD /* DualDepthApp.swift in Sources */,
 				CE8A70472727D33700FF09E5 /* PhotoCaptureProcessor.swift in Sources */,
 				CE8A70432727D2F500FF09E5 /* CameraService+Enums.swift in Sources */,
+				CEDBBB262B7251FF00F94C5F /* CameraLabelStyle.swift in Sources */,
 				CE4C1345272A3264004F75D7 /* SettingView.swift in Sources */,
 				CE8A70452727D31A00FF09E5 /* CameraService+Extensions.swift in Sources */,
 				CE8A703D2727D27A00FF09E5 /* CameraView.swift in Sources */,
@@ -264,6 +268,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -325,6 +330,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -374,6 +380,9 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shakshi.DualDepth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,6 +420,9 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shakshi.DualDepth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

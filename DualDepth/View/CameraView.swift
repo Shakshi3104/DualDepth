@@ -53,10 +53,12 @@ struct CameraView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack {
-                HStack(spacing: 10) {
-                    Image(systemName: "square.stack.3d.forward.dottedline")
+                HStack(spacing: 16) {
+                    Label("Disparity", systemImage: "square.stack.3d.forward.dottedline")
+                        .labelStyle(.cameraLabel)
                         .foregroundColor(model.isDepthMapAvailable ? .yellow : .secondary)
-                    Image(systemName: "square.dotted")
+                    Label("LiDAR", systemImage: "square.dotted")
+                        .labelStyle(.cameraLabel)
                         .foregroundColor(model.isLiDARAvailable ? .yellow : .secondary)
                     Spacer()
                 }
@@ -78,7 +80,7 @@ struct CameraView: View {
                             }
                         }
                     )
-                    .animation(.easeIn)
+                    .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/, value: model.photo)
                 
                 ZStack {
                     HStack {
